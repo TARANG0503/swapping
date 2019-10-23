@@ -1,0 +1,68 @@
+#include<stdio.h>
+#include<malloc.h>
+#include<conio.h>
+struct node{
+  int data;
+  struct node *link;
+};
+struct node *head=NULL;
+struct node *temp,*prev=NULL,*newnode;
+
+void ins_beg(int ele){
+  newnode = (struct node*)malloc(sizeof(int));
+  newnode->data=ele;
+  newnode->link=head;
+  if(head == NULL)
+  {
+      temp=newnode;
+  }
+  else
+  {
+     temp->link=newnode;
+  }
+  head=newnode;
+
+}
+
+
+void del_end()
+{
+    temp =head->link;
+    while(temp != head)
+    {
+      prev=temp;
+      temp=temp->link;
+    }
+    prev->link=head;
+}
+
+void display()
+{
+  printf("%d \n",head->data);
+  temp =head->link;
+  while(temp!=head)
+  {
+      printf("%d \n",temp->data);
+      temp=temp->link;
+  }
+}
+
+void main()
+{
+    printf("program begins here\n");
+    ins_beg(1);
+    ins_beg(2);
+    ins_beg(3);
+    ins_beg(4);
+    ins_beg(5);
+    printf("linked list:\n");
+    display();
+    del_end();
+    printf("deleted linked list:\n");
+    display();
+    del_end();
+    printf("deleted linked list:\n");
+    display();
+    getch();
+
+}
